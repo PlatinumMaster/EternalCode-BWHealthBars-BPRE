@@ -8,7 +8,13 @@
 * Ensure you have a working [devkitARM](https://devkitpro.org/wiki/Getting_Started) and [Python 3](https://www.python.org/downloads/) setup.
 * Place a vanilla Pokémon FireRed ROM, with the title `BPRE0.gba`, in the root directory.
 * Using command prompt, run:
+
+### If you're on Windows:
+> python scripts\build && python scripts\insert
+
+### If you're on Linux:
 > python scripts/build && python scripts/insert
+
 * You should now see a ROM with the title `test.gba`. Run that in an emulator, and see your changes.
 
 
