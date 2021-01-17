@@ -17,7 +17,7 @@ SIZE = os.path.join(PATH, PREFIX + 'size')
 SRC = './src'
 BUILD = './build'
 ASFLAGS = ['-mthumb', '-I', SRC]
-LDFLAGS = ['-z', 'muldefs', '-T', 'linker/BPRE.ld', '-T', 'linker/linker.ld']
+LDFLAGS = ['-z', 'muldefs', '-T',  os.path.join('linker', 'BPRE.ld'), '-T', os.path.join('linker', 'linker.ld')]
 CFLAGS= ['-mthumb', '-mno-thumb-interwork', '-mcpu=arm7tdmi',
          '-fno-inline', '-mlong-calls', '-march=armv4t', '-Wall', '-g', '-O3']
 
@@ -50,7 +50,7 @@ def process_c(in_file):
 
 def link(objects):
     '''Link objects into one binary'''
-    linked = 'build/linked.o'
+    linked = os.path.join('build', 'linked.o')
     cmd = [LD] + LDFLAGS + ['-o', linked] + list(objects)
     run_command(cmd)
     return linked
@@ -66,7 +66,7 @@ def determine_size(objects):
     return sum(text_column)
 
 def objcopy(binary):
-    cmd = [OBJCOPY, '-O', 'binary', binary, 'build/output.bin']
+    cmd = [OBJCOPY, '-O', 'binary', binary, os.path.join('build', 'output.bin')]
     run_command(cmd)
 
 import glob    
