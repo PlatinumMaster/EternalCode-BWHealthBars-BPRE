@@ -1,6 +1,6 @@
 # [EternalCode](https://github.com/EternalCode)'s BW Style Health Bars and Box for Pokémon Fire Red
 
-*Note: I,[PlatinumMaster](https://github.com/PlatinumMaster), am not the original creator of this. That would be [EternalCode](https://github.com/EternalCode). I just fixed the build and insertion scripts as they were busted.*
+*Note: I, [PlatinumMaster](https://github.com/PlatinumMaster), am not the original creator of this. That would be [EternalCode](https://github.com/EternalCode). I just fixed the build and insertion scripts as they were busted.*
 
 **This is to be used on a binary Pokémon FireRed ROM.**
 
@@ -14,7 +14,9 @@
 
 ## Screenshots
 Single battle:
+
 ![Single battle](screenshots/singles.png)
 
 Double battles:
+
 ![Double battle](screenshots/doubles.png)
