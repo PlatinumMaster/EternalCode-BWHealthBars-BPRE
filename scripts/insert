@@ -7,6 +7,7 @@ import shutil
 import sys
 import argparse
 import struct
+import platform
 
 if sys.version_info < (3, 4):
         print('Python 3.4 or later is required.')
@@ -25,7 +26,7 @@ parser.add_argument('--debug', action='store_true',
 
 args = parser.parse_args()
 
-PATH = os.path.join(os.environ.get('DEVKITARM'), 'bin')
+PATH = os.path.join(os.environ['DEVKITARM'], 'bin') if platform.system() != 'Windows' else os.path.join('C:\\', 'devkitPro', 'devkitARM', 'bin')
 PREFIX = 'arm-none-eabi-'
 OBJCOPY = os.path.join(PATH, PREFIX + 'objcopy')
 OBJDUMP = os.path.join(PATH, PREFIX + 'objdump')

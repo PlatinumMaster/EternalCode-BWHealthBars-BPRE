@@ -9,8 +9,11 @@
 * Place a vanilla Pokémon FireRed ROM, with the title `BPRE0.gba`, in the root directory.
 * Using command prompt, run:
 
-### If you're on Windows:
+### If you're on Windows and using Command Prompt:
 > python scripts\build && python scripts\insert
+
+### If you're on Windows and using PowerShell:
+> python scripts\build; python scripts\insert
 
 ### If you're on Linux:
 > python scripts/build && python scripts/insert

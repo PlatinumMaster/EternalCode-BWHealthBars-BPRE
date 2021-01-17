@@ -6,16 +6,17 @@ import itertools
 import hashlib
 import subprocess
 import sys
+import platform
 
-PATH = os.path.join(os.environ['DEVKITARM'], 'bin')
+PATH = os.path.join(os.environ['DEVKITARM'], 'bin') if platform.system() != 'Windows' else os.path.join('C:\\', 'devkitPro', 'devkitARM', 'bin')
 PREFIX = 'arm-none-eabi-'
 AS = os.path.join(PATH, PREFIX + 'as')
 CC = os.path.join(PATH, PREFIX + 'gcc')
 LD = os.path.join(PATH, PREFIX + 'ld')
 OBJCOPY = os.path.join(PATH, PREFIX + 'objcopy')
 SIZE = os.path.join(PATH, PREFIX + 'size')
-SRC = './src'
-BUILD = './build'
+SRC = 'src'
+BUILD = 'build'
 ASFLAGS = ['-mthumb', '-I', SRC]
 LDFLAGS = ['-z', 'muldefs', '-T',  os.path.join('linker', 'BPRE.ld'), '-T', os.path.join('linker', 'linker.ld')]
 CFLAGS= ['-mthumb', '-mno-thumb-interwork', '-mcpu=arm7tdmi',
@@ -26,6 +27,7 @@ def run_command(cmd):
         return subprocess.check_output(cmd).decode()
     except subprocess.CalledProcessError as e:
         print(e.output.decode(), file=sys.stderr)
+        print(cmd)
         sys.exit(1)
 
 def make_output_file(filename):
@@ -91,7 +93,10 @@ def main():
     objects = itertools.starmap(run_glob, globs.items())
 
     # Link and extract raw binary
-    all_objects = list(itertools.chain.from_iterable(objects))
+    try:
+        all_objects = list(itertools.chain.from_iterable(objects))
+    except:
+        print(PATH)
     size = determine_size(all_objects)
     print('Code will use', size, 'bytes of space')
     linked = link(all_objects)
